@@ -1,0 +1,30 @@
+body{
+    text-align: center;
+}
+#main{
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 75vh;
+    padding: 20px;
+}
+#startStop{
+    cursor: pointer;
+}
+#patterns{
+    height: 75%;
+}
+#ch{
+    height: 100%;
+}
+.btn{
+    background: blue;
+    height: 10vh;
+    width: 10vh;
+    /* float: left; */
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+.pressedBtn{
+    background: cyan;
+    border-radius: 50%;
+}

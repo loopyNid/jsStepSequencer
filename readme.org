@@ -1,0 +1,4 @@
+* Sequencer
+this is a step sequencer made with tone.js
+for an university class.
+[[https://loopynid.github.io/jsstepsequencer][DEMO]]
