@@ -1,19 +1,27 @@
 // goal
-// make a step sequencer that records audio output
+// make a step sequencer1
 // steps
 // - play a pattern done
-// - bpm
-// - record
-// - better samples
+// - bpm slider done
+// - readme demo link
+// - visualize beat done
+// - better samples done
 var starop = $("#startStop");
 var btn = $(".btn");
+var bpmSlider = document.getElementById("bpm");
+var bpmVal = $("#bpmVal");
 var playing = false;
-var ch = new Tone.Player("./samples/ch.mp3").toMaster();
-var bd = new Tone.Player("./samples/bd.mp3").toMaster();
-var sn = new Tone.Player("./samples/sn.mp3").toMaster();
+var waveform = new Tone.Waveform(512);
+var ch = new Tone.Player("./samples/ch.mp3").chain(waveform, Tone.Master);
+var bd = new Tone.Player("./samples/bd.mp3").chain(waveform, Tone.Master);
+var sn = new Tone.Player("./samples/sn.mp3").chain(waveform, Tone.Master);
 var samplesArray = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
 var index = 0;
 var bpl = "8n";
+bpmVal.html("BPM: " + bpmSlider.value);
+bpmSlider.onchange = function(){
+    bpmVal.html("BPM: " + bpmSlider.value);
+};
 //loop
 Tone.Transport.scheduleRepeat( beat, bpl);
 starop.click(function(){
@@ -36,7 +44,6 @@ btn.click(function(){
     } else {
         samplesArray[sample-1][index] = 0;
     }
-    console.log($(this).parent().attr("id"));
 });
 function startLoop(){
     Tone.Transport.start();
@@ -45,7 +52,14 @@ function stopLoop(){
     Tone.Transport.stop();
 }
 function beat(time){
+    $(".btn").css("filter","invert(0%)");
+    Tone.Transport.bpm.value = bpmSlider.value;
     let step = index % 8;
+    $(".btn").each(function(){
+        if($(this).index() == step){
+            $(this).css("filter","invert(100%)");
+        }
+    });
     for(let i = 0;i < samplesArray.length; i++){
         if(i == 0) {
             if(samplesArray[i][step] == 1){
@@ -53,22 +67,23 @@ function beat(time){
             } else {
                 bd.mute = true;
             }
-            bd.start();
+            bd.start(time);
         } else if(i == 1) {
             if(samplesArray[i][step] == 1){
                 ch.mute = false;
             } else {
                 ch.mute = true;
             }
-            ch.start();
+            ch.start(time);
         } else {
             if(samplesArray[i][step] == 1){
                 sn.mute = false;
             } else {
                 sn.mute = true;
             }
-            sn.start();
+            sn.start(time);
         }
     }
+
     index++;
 }

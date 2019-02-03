@@ -1,5 +1,16 @@
 body{
+    margin: 0;
     text-align: center;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+p {
+    color: ivory;
 }
 #main{
     background-color: rgba(0, 0, 0, 0.4);
@@ -9,6 +20,24 @@ body{
 #startStop{
     cursor: pointer;
 }
+#bpmCont{
+    background-color: Aqua;
+    display: inline-block;
+}
+#bpmCont{
+    display: inline-block;
+}
+#controls{
+
+}
+.controls{
+    display: inline-block;
+}
+.patCont{
+    height: 14vh;
+    display: flex;
+    justify-content: center;
+}
 #patterns{
     height: 75%;
 }
@@ -17,12 +46,13 @@ body{
 }
 .btn{
     background: blue;
-    height: 10vh;
-    width: 10vh;
+    height: 80%;
+    width: 10%;
     /* float: left; */
-    display: inline-block;
+    /* display: inline-block; */
     margin: 5px;
     cursor: pointer;
+    border-radius: 15%;
 }
 .pressedBtn{
     background: cyan;

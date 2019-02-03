@@ -4,13 +4,22 @@
     <title>Sequencer</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.6.11/Tone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
     <link href="style.css" rel="stylesheet"/>
   </head>
   <body>
     <div id="main">
-      <button id="startStop">&#9655;</button>
+      <div id="controls">
+        <button id="startStop" class="controls">&#9655;</button>
+        <div id="bpmcont1">
+          <p id="bpmVal" class="controls">BPM</p>
+          <div id="bpmCont">
+            <input id="bpm" class="controls" type="range" min="50" max="220" value="120" />
+          </div>
+        </div>
+      </div>
       <div id="patterns">
-        <div id="1">
+        <div id="1" class="patCont">
           <div class="btn"></div>
           <div class="btn"></div>
           <div class="btn"></div>
@@ -20,7 +29,7 @@
           <div class="btn"></div>
           <div class="btn"></div>
         </div>
-        <div id="2">
+        <div id="2" class="patCont">
           <div class="btn"></div>
           <div class="btn"></div>
           <div class="btn"></div>
@@ -30,7 +39,7 @@
           <div class="btn"></div>
           <div class="btn"></div>
         </div>
-        <div id="3">
+        <div id="3" class="patCont">
           <div class="btn"></div>
           <div class="btn"></div>
           <div class="btn"></div>
@@ -47,5 +56,6 @@
       integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
       crossorigin="anonymous"></script>
     <script src="sequencer.js"></script>
+    <script src="visual.js"></script>
   </body>
 </html>
